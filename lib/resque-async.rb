@@ -4,7 +4,7 @@ require 'resque-async/workers'
 
 
 module ResqueAsync
-  
+
 end
 
 class Module

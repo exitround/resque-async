@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ResqueAsync::VERSION
   spec.authors       = ["Greg Dean"]
   spec.email         = ["dean.greg@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Simple way of invoking methods asynchronously using resque.}
+  # spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -23,5 +23,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "resque_spec"
-  # spec.add_development_dependency "fakeredis"
 end
