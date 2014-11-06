@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Greg Dean"]
   spec.email         = ["dean.greg@gmail.com"]
   spec.summary       = %q{Simple way of invoking methods asynchronously using resque.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/exitround/resque-async"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
