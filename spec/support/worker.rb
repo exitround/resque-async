@@ -1,3 +1,3 @@
 shared_examples 'worker' do
-  it { expect(subject).to respond_to(:perform)}
+  it { expect(described_class).to respond_to(:perform)}
 end

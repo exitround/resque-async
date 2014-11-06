@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Greg Dean"]
   spec.email         = ["dean.greg@gmail.com"]
   spec.summary       = %q{Simple way of invoking methods asynchronously using resque.}
-  # spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

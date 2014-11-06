@@ -1,7 +1,7 @@
 module ResqueAsync
   module Workers
 
-    class AsyncClassWorker
+    module AsyncClassWorker
       def perform(klass, method, args = [])
         if args.empty?
           klass.constantize.send(method)
@@ -11,15 +11,18 @@ module ResqueAsync
       end
     end
 
-    class HighPriorityClassMethod < AsyncClassWorker
+    class HighPriorityClassMethod
+      extend AsyncClassWorker
       @queue = :high
     end
 
-    class LowPriorityClassMethod < AsyncClassWorker
+    class LowPriorityClassMethod
+      extend AsyncClassWorker
       @queue = :low
     end
 
-    class MediumPriorityClassMethod < AsyncClassWorker
+    class MediumPriorityClassMethod
+      extend AsyncClassWorker
       @queue = :medium
     end
   end
