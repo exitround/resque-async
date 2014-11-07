@@ -21,19 +21,36 @@ Or install it yourself as:
 
 ## Usage
 
-Supports Class Methods and ActiveRecord instance methods
+Assuming
+
+```ruby
+class MyObject < ActiveRecord::Base
+    def self.slow_class_method
+    end
+    def slow_instance_method
+    end
+end
+```
+
+Supports Class methods and ActiveRecord instance methods. _ActiveRecord_ is optional
 
 ```ruby
 MyObject.async(:high).slow_class_method
-record_instance.async(:medium).slow_instance_method
+MyObject.new.async(:medium).slow_instance_method # ActiveRecord instances will be queued/reloaded/invoked asynchronously
+```
+
+Natural synchronous invocation
+```ruby
+    MyObject.slow_class_method
+    MyObject.new.slow_instance_method
 ```
 
 Support high, medium, low priority out of the box. As well as custom worker/queue
 
 ```ruby
-MyObject.async(:high).high_priority
-MyObject.async(:medium).medium_priority
-MyObject.async(:low).low_priority
+MyObject.async(:high).slow_class_method # slow_class_method invocation enqueued on 'high' queue
+MyObject.async(:medium).slow_class_method # slow_class_method invocation enqueued on 'medium' queue
+MyObject.async(:low).slow_class_method # slow_class_method invocation enqueued on 'low' queue
 ```
 OR
 ```ruby
