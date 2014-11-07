@@ -30,9 +30,6 @@ class MyObject < ActiveRecord::Base
     def slow_instance_method
     end
 end
-
-# is this async or not? What does result equal? Better check the implementation of MyObject
-result = MyObject.slow_method 
 ```
 
 Supports Class Methods and ActiveRecord instance methods
