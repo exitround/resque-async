@@ -21,18 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Assuming
-
-```ruby
-class MyObject < ActiveRecord::Base
-    def self.slow_class_method
-    end
-    def slow_instance_method
-    end
-end
-```
-
-Supports Class methods and ActiveRecord instance methods. _ActiveRecord is optional_
+Supports Class Methods and ActiveRecord instance methods
 
 ```ruby
 MyObject.async(:high).slow_class_method
