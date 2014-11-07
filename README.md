@@ -1,7 +1,7 @@
 # ResqueAsync
 
 A simple way to invoke methods asynchronously using Resque. There are a few gems that provide similar functionality.
-However We like the more declarative syntax with this implementation. As it gives the caller control over the invocation
+However this this implementation provides more expressive syntax that it gives the caller control over the invocation.
 
 ## Installation
 
@@ -28,7 +28,7 @@ MyObject.async(:high).slow_class_method
 record_instance.async(:medium).slow_instance_method
 ```
 
-Support high, medium, low priority out of the box. As well as custom work/queue
+Support high, medium, low priority out of the box. As well as custom worker/queue
 
 ```ruby
 MyObject.async(:high).high_priority
@@ -44,6 +44,33 @@ end
 MyObject.async(MyCustomerWorker).crazy_priority
 ```
 
+## What about resque-async-method?
+
+[resque-async-method](https://github.com/nragaz/resque-async-method) hides the fact that a method may be invoked asynchronously. 
+From the caller's perspective things can get really confusing.
+
+With resque-async-method
+```ruby
+class MyObject < ActiveRecord::Base
+    def slow_method
+    end
+    async_method :slow_method
+end
+
+# is this async or not? What does result equal? Better check the implementation of MyObject
+result = MyObject.slow_method 
+```
+
+With resque-async
+```ruby
+class MyObject < ActiveRecord::Base
+    def slow_method
+    end
+end
+
+# this should be pretty obvious years later that slow_method is invoked async
+d = MyObject.async(:low).slow_method
+```
 
 ## Contributing
 
