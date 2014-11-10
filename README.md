@@ -82,7 +82,7 @@ class MyObject < ActiveRecord::Base
 end
 
 # is this async or not? What does result equal? Better check the implementation of MyObject
-result = MyObject.slow_method 
+result = MyObject.new.slow_method 
 ```
 
 With resque-async
@@ -92,8 +92,8 @@ class MyObject < ActiveRecord::Base
     end
 end
 
-# this should be pretty obvious years later that slow_method is invoked async
-d = MyObject.async(:low).slow_method
+# this should be pretty obvious, even years later, that slow_method is invoked async
+d = MyObject.new.async(:low).slow_method
 ```
 
 ## Contributing
