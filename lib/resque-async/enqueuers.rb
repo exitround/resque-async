@@ -23,6 +23,8 @@ module ResqueAsync
             worker = Workers::MediumPriorityClassMethod
           when :low
             worker = Workers::LowPriorityClassMethod
+          when :realtime
+            return args.empty? ? @host_class.send(methId.id2name) : @host_class.send(methId.id2name, *args)
           else
             raise StandardError('Unknown priority')
         end
