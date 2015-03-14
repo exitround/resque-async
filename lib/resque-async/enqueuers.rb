@@ -26,7 +26,7 @@ module ResqueAsync
           when :realtime
             return args.empty? ? @host_class.send(methId.id2name) : @host_class.send(methId.id2name, *args)
           else
-            raise StandardError('Unknown priority')
+            raise StandardError.new("Unknown priority '#{@priority}'")
         end
         # enqueue
         Resque.enqueue(worker, @host_class.name, methId.id2name, args)
