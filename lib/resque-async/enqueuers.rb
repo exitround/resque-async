@@ -21,7 +21,7 @@ module ResqueAsync
             worker = Workers::HighPriorityClassMethod
           when :medium, 'medium'
             worker = Workers::MediumPriorityClassMethod
-          when :low
+          when :low, 'low'
             worker = Workers::LowPriorityClassMethod
           when :realtime, 'realtime'
             return args.empty? ? @host_class.send(methId.id2name) : @host_class.send(methId.id2name, *args)
