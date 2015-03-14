@@ -17,13 +17,13 @@ module ResqueAsync
         case @priority
           when Class
             worker = @priority
-          when :high
+          when :high, 'high'
             worker = Workers::HighPriorityClassMethod
-          when :medium
+          when :medium, 'medium'
             worker = Workers::MediumPriorityClassMethod
           when :low
             worker = Workers::LowPriorityClassMethod
-          when :realtime
+          when :realtime, 'realtime'
             return args.empty? ? @host_class.send(methId.id2name) : @host_class.send(methId.id2name, *args)
           else
             raise StandardError.new("Unknown priority '#{@priority}'")
