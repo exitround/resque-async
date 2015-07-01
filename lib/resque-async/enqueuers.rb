@@ -14,9 +14,12 @@ module ResqueAsync
         # call super unless the host responds to the method
         return super unless @host_class.respond_to?(methId.id2name.to_sym)
 
+        queue_name ||= @priority.to_s
+
         case @priority
           when Class
             worker = @priority
+            queue_name = Resque.queue_from_class(worker)
           when :high, 'high'
             worker = Workers::HighPriorityClassMethod
           when :medium, 'medium'
@@ -26,10 +29,10 @@ module ResqueAsync
           when :realtime, 'realtime'
             return args.empty? ? @host_class.send(methId.id2name) : @host_class.send(methId.id2name, *args)
           else
-            raise StandardError.new("Unknown priority '#{@priority}'")
+            worker = Workers::AdhocPriorityClassMethod
         end
-        # enqueue
-        Resque.enqueue(worker, @host_class.name, methId.id2name, args)
+
+        Resque.enqueue_to(queue_name, worker, @host_class.name, methId.id2name, args)
       end
     end
 

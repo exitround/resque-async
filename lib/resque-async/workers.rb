@@ -25,5 +25,9 @@ module ResqueAsync
       extend AsyncClassWorker
       @queue = :medium
     end
+
+    class AdhocPriorityClassMethod
+      extend AsyncClassWorker
+    end
   end
 end
